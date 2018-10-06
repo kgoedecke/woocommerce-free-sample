@@ -53,6 +53,11 @@ if ( ! class_exists( 'WooCommerce_Free_Sample_Plugin' ) ) {
 			);
 		}
 
+		/**
+		 * Adds a free item to the shop cart.
+		 *
+		 * @since 1.0.0
+		 */
 		public function add_free_product_to_cart() {
 
 			if ( ! is_admin() && is_user_logged_in() ) {
@@ -122,6 +127,12 @@ if ( ! class_exists( 'WooCommerce_Free_Sample_Plugin' ) ) {
 			}
 		}
 
+		/**
+		 * Rewrite a price for free items.
+		 *
+		 * @since 1.0.0
+		 * @param WC_Cart $cart_object
+		 */
 		public function add_custom_price( $cart_object ) {
 
 			if ( ! empty( $cart_object ) ) {
@@ -134,6 +145,11 @@ if ( ! class_exists( 'WooCommerce_Free_Sample_Plugin' ) ) {
 			}
 		}
 
+		/**
+		 * Adds a Free item field to the Edit product admin page.
+		 *
+		 * @since 1.0.0
+		 */
 		public function create_free_item_field() {
 			$args = array(
 				'id'          => '_wfs_free_item',
@@ -146,6 +162,12 @@ if ( ! class_exists( 'WooCommerce_Free_Sample_Plugin' ) ) {
 			woocommerce_wp_text_input( $args );
 		}
 
+		/**
+		 * Save a free item value to the product meta.
+		 *
+		 * @since 1.0.0
+		 * @param int $post_id
+		 */
 		public function save_free_item_field( $post_id ) {
 			$product   = wc_get_product( $post_id );
 			$free_item = isset( $_POST['_wfs_free_item'] ) ? $_POST['_wfs_free_item'] : '';
